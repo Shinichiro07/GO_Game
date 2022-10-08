@@ -1,0 +1,3 @@
+#GO_Game
+
+Ceci est notre version du jeu de go en tour par tour.
