@@ -17,8 +17,6 @@ class goban:
             X2= 380
             Y2= 24
 
-
-
         for x in range(self.format):
             screen.create_rectangle(X1, Y1, X2, Y2, fill= 'red')
             
@@ -27,7 +25,7 @@ class goban:
     
 
 
-
+#test
 
 screen= Canvas(window, width= 400, height= 400, bg= "#262526")
 screen.place(x= 50, y= 25)
