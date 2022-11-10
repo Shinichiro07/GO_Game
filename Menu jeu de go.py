@@ -16,7 +16,7 @@ def afficher_regle():
 
 window= Tk()
 window.geometry("1200x600")
-bg = PhotoImage(file = r"C:\Users\seb60\OneDrive\Bureau\Jeu de go\Jeu de go 2.png")
+bg = PhotoImage(file = r"C:\Users\adrien\Desktop\GO_Game\Jeu de go 2.png")
 
 
 
