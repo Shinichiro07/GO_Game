@@ -21,10 +21,22 @@ V= 0
 class goban:
     def __init__(self, taille):
         self.format= int(taille)
-        self.goban= [X for X in range(7)]
+        self.goban_map= []
         
     def create(self):
         if self.format == 9:
+            
+            self.goban_map= [['0', '0', '0', '0', '0', '0', '0', '0', '0'],
+                     ['0', '0', '0', '0', '0', '0', '0', '0', '0'],
+                    ['0', '0', '0', '0', '0', '0', '0', '0', '0'],
+                    ['0', '0', '0', '0', '0', '0', '0', '0', '0'],
+                    ['0', '0', '0', '0', '0', '0', '0', '0', '0'],
+                    ['0', '0', '0', '0', '0', '0', '0', '0', '0'],
+                    ['0', '0', '0', '0', '0', '0', '0', '0', '0'],
+                    ['0', '0', '0', '0', '0', '0', '0', '0', '0'],
+                    ['0', '0', '0', '0', '0', '0', '0', '0', '0']]
+        
+        
             X1= 100
             Y1= 100
 
@@ -62,7 +74,26 @@ class goban:
                 Y1= Y1 + 50
 
                 X2= X2 + 50
-                Y2= Y2 + 50 
+                Y2= Y2 + 50
+                
+    
+    def ajoute_pierre(self, coordX, coordY, couleur):
+        
+        if self.go[coordX][coordY] == 0:
+            if couleur == "blue":
+                self.go[coordX][coordY]= 1
+            
+            else:
+                self.go[coordX][coordY]= 2
+                
+
+
+
+
+
+
+
+
 
 def click(event):
     global X, Y, V
@@ -83,7 +114,6 @@ def click(event):
    
     print(X, Y)
 
-window.bind("<Button--1>", click)
 
 def arrondie(X):
     X_int= int(X)
@@ -100,5 +130,8 @@ def arrondie(X):
 
 my_goban= goban(9)
 my_goban.create()
+
+window.bind("<Button--1>", click)
+
 
 mainloop()
