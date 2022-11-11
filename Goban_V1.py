@@ -3,14 +3,6 @@ from tkinter import *
 import time
 import math
 
-window= Tk()
-window.title("GO_Game")
-window.geometry("1200x600")
-window.config(background= "#0D0D0D")
-
-
-screen= Canvas(window, width= 3000, height= 3000, bg= "black")
-screen.place(x= 0, y= 0)
 
 X= 0
 Y= 0
@@ -19,9 +11,10 @@ V= 0
 
 
 class goban:
-    def __init__(self, taille):
+    def __init__(self, taille, screen):
         self.format= int(taille)
         self.goban_map= []
+        self.screen= screen
         
     def create(self):
         if self.format == 9:
@@ -46,9 +39,9 @@ class goban:
 
             for x in range(9):
     
-                screen.create_rectangle(100, Y1, 500, X2, fill= 'white')
+                self.screen.create_rectangle(100, Y1, 500, X2, fill= 'white')
 
-                screen.create_rectangle(X1, 100, X2, 500, fill= 'white')
+                self.screen.create_rectangle(X1, 100, X2, 500, fill= 'white')
     
                 X1= X1 + 50
                 Y1= Y1 + 50
@@ -66,9 +59,9 @@ class goban:
 
             for x in range(13):
     
-                screen.create_rectangle(100, Y1, 700, X2, fill= 'white')
+                self.screen.create_rectangle(100, Y1, 700, X2, fill= 'white')
 
-                screen.create_rectangle(X1, 100, X2, 700, fill= 'white')
+                self.screen.create_rectangle(X1, 100, X2, 700, fill= 'white')
     
                 X1= X1 + 50
                 Y1= Y1 + 50
@@ -78,41 +71,20 @@ class goban:
                 
     
     def ajoute_pierre(self, coordX, coordY, couleur):
+        coordX= arrondie(coordX // 10 / 5 - 2)
+        coordY= arrondie(coordY // 10 / 5 - 2)
         
-        if self.go[coordX][coordY] == 0:
-            if couleur == "blue":
-                self.go[coordX][coordY]= 1
-            
-            else:
-                self.go[coordX][coordY]= 2
+        if coordX >= 0 and coordX <= 8 and coordY >= 0 and coordY <= 8:
+            if int(self.goban_map[coordX][coordY]) == 0:
                 
-
-
-
-
-
-
-
-
-
-def click(event):
-    global X, Y, V
-
-    V= V + 1
-
-
-    X= arrondie(event.x // 10 / 5 - 2)
-    Y= arrondie(event.y // 10 / 5 - 2)
-
-    if X >= 0 and X <= 8 and Y >= 0 and Y <= 8:
-        if V % 2 == 1:
-
-            screen.create_oval(X*50 + 80, Y*50 + 80, X*50 + 120, Y*50 + 120, fill= "white")
-        else:
-            screen.create_oval(X*50 + 80, Y*50 + 80, X*50 + 120, Y*50 + 120, fill= "blue")
-
+                if couleur == "blue":
+                    self.goban_map[coordX][coordY]= 1
+                    self.screen.create_oval(coordX*50 + 80, coordY*50 + 80, coordX*50 + 120, coordY*50 + 120, fill= "blue")
+            
+                else:
+                    self.goban_map[coordX][coordY]= 2
+                    self.screen.create_oval(coordX*50 + 80, coordY*50 + 80, coordX*50 + 120, coordY*50 + 120, fill= "white")
    
-    print(X, Y)
 
 
 def arrondie(X):
@@ -124,14 +96,3 @@ def arrondie(X):
         return int(X)
     else:
         return X_int
-
-
-
-
-my_goban= goban(9)
-my_goban.create()
-
-window.bind("<Button--1>", click)
-
-
-mainloop()

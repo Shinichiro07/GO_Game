@@ -1,10 +1,11 @@
 from tkinter import *
 
+
 def button_destroy():
     button1.place_forget()
     button2.place_forget()
     button3.place_forget()
-    canvas1.delete('all')
+    #canvas1.delete('all')
 
 
 def afficher_regle():
