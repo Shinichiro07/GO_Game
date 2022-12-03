@@ -14,6 +14,7 @@ class goban:
         self.format= int(taille)
         self.goban_map= []
         self.screen= screen
+        self.turn= 0
         
     def create(self):
         if self.format == 9:

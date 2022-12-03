@@ -15,7 +15,7 @@ class menu:
     def afficher(self):
         self.affichage= True
         
-        self.button1= Button(self.screen,text="Play",width=25,height=1,bg="black",fg="white", font=("Hashiba",18),relief="flat")
+        self.button1= Button(self.screen,text="Play",width=25,height=1,bg="black",fg="white", font=("Hashiba",18),relief="flat", command= self.menu_partie_config)
         self.button2= Button(self.screen,text="Rules",width=25,height=1,bg="black",fg="white",font=("Hashiba",18),relief="flat",command= self.afficher_regle)
         self.button3= Button(self.screen,text="Settings",width=25,height=1,bg="black",fg="white",font=("Hashiba",18),relief="flat")
                 
@@ -46,6 +46,13 @@ class menu:
     def afficher_regle(self):
         self.destroy()
         affichage_regle=self.screen.create_text(600,100,anchor= "center", text="Rules",font=("Harukaze",200),fill="dark red")
+    
+    def menu_partie_config(self):
+        self.destroy()
+        button4= Button(self.screen,text="Play",width=25,height=1,bg="black",fg="white", font=("Hashiba",18),relief="flat", command= game_loop)
+        button4.pack()
+        
+        title=self.screen.create_text(600,100,anchor= "center", text="Configurateur de partie",font=("Harukaze",200),fill="dark red")
 
 
 #window= Tk()
